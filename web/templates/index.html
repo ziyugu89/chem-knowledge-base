@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>氟化工生产技术知识库</title>
+  <link rel="stylesheet" href="/static/style.css?v=7" />
+</head>
+<body>
+  <div class="app">
+    <aside class="side">
+      <div class="brand">
+        <div class="f-badge">
+          <span class="f-sym">F</span>
+          <span class="f-num">9</span>
+        </div>
+        <div>
+          <h1>氟化工知识库</h1>
+          <p>胡伟主编 · 上中下三册 RAG</p>
+        </div>
+      </div>
+
+      <section class="panel">
+        <h2>教材入库</h2>
+        <div id="book-status" class="books"></div>
+        <button id="rebuild-btn" class="ghost" type="button">重建检索索引</button>
+      </section>
+
+      <section class="panel">
+        <h2>随时补充资料</h2>
+        <p class="hint">粘贴文本或上传 txt / md / pdf，加入后会立刻切分并更新向量库。</p>
+        <label>标题
+          <input id="extra-title" placeholder="例如：厂内氢氟酸操作规程" />
+        </label>
+        <label>正文
+          <textarea id="extra-text" rows="5" placeholder="把要入库的文字贴在这里…"></textarea>
+        </label>
+        <div class="extra-actions">
+          <button id="extra-add-btn" class="ghost" type="button">加入并更新知识库</button>
+          <label class="file-btn">上传文件
+            <input id="extra-file" type="file" accept=".txt,.md,.pdf,.csv,text/plain,application/pdf" />
+          </label>
+        </div>
+        <p id="extra-msg" class="hint"></p>
+        <div id="extra-list" class="extra-list"></div>
+      </section>
+
+      <section class="panel">
+        <h2>大模型设置</h2>
+        <label>服务商
+          <select id="provider"></select>
+        </label>
+        <label>模型
+          <input id="model" placeholder="deepseek-chat" />
+        </label>
+        <label>API Key
+          <input id="api-key" type="password" placeholder="填入后保存在本机浏览器" />
+        </label>
+        <p id="provider-hint" class="hint"></p>
+        <label class="check">
+          <input id="search-only" type="checkbox" />
+          仅检索原文，不调用大模型
+        </label>
+      </section>
+
+      <section class="panel examples">
+        <h2>试试这些问题</h2>
+        <button type="button" data-q="萤石的主要成分、性质和主要用途是什么？">萤石性质与用途</button>
+        <button type="button" data-q="氢氟酸有哪些生产路线？萤石法的主要设备和安全注意点是什么？">氢氟酸生产路线</button>
+        <button type="button" data-q="什么是ODS？HCFC、HFC 作为替代品有什么区别？">ODS 与替代品</button>
+        <button type="button" data-q="含氟药物为什么具有生理活性？伪拟效应和阻断效应是什么？">含氟药物活性</button>
+        <button type="button" data-q="聚四氟乙烯（PTFE）有哪些特性？常见含氟聚合物还有哪些？">PTFE 与氟树脂</button>
+        <button type="button" data-q="氟橡胶和氟涂料各自有什么特点和应用？">氟橡胶与氟涂料</button>
+      </section>
+    </aside>
+
+    <main class="main">
+      <header class="top">
+        <div>
+          <strong>基于教材原文的检索增强问答</strong>
+          <span id="index-meta">正在加载索引…</span>
+        </div>
+        <button id="clear-btn" class="ghost" type="button">清空对话</button>
+      </header>
+      <div id="chat" class="chat"></div>
+      <form id="composer" class="composer">
+        <textarea id="question" rows="2" placeholder="例如：无水氟化氢怎么由萤石制取？有哪些安全环保要求？"></textarea>
+        <button id="send-btn" type="submit">提问</button>
+      </form>
+    </main>
+  </div>
+  <script src="/static/app.js?v=7"></script>
+</body>
+</html>

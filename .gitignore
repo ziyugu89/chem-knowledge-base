@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+*.tmp
+*.zip
+*.pdf
+_ocr_test*
+_pdf_inspect*
+_shang_sample*
+_zhong_p10.png
+_xia_p10.png
+.ocr_cache/
+data/_*.txt
+data/_*.py
+
